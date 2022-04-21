@@ -68,35 +68,40 @@ let data = [
       genero: ["ação", "aventura"],
       ano: "2021", 
     }]
-  
-    let buscaCliente1 = "suspense";
-    let buscaCliente2 = "Corpo Elétrico";
-    let buscaCliente3 = "Homem-Aranha: Sem Volta para Casa";
-    let buscaCliente4 = "sci-fi";
-    let buscaCliente5 = "romance";
 
 
+function procurarFilmes(pesquisa){
+    
+    if(typeof(pesquisa) == "string"){
+
+        const pesquisarTitulo = data.filter(({titulo}) => titulo.toLowerCase().includes(pesquisa.toLowerCase()));
+        const pesquisarGenero = data.filter(({genero}) => genero.includes(pesquisa.toLowerCase()));
 
 
-// Cliente 1:
-const cliente1 = data.filter(({titulo, genero}) => [genero].flat().includes(buscaCliente1) || titulo === buscaCliente1) ; 
-console.log("Resultado da busca para Cliente 1:"); console.table(cliente1);
+        if(pesquisarGenero == 0 && pesquisarTitulo != 0){
 
-// Cliente 2:
-const cliente2 = data.filter(({titulo, genero}) => [genero].flat().includes(buscaCliente2) || titulo === buscaCliente2) ; 
-console.log("Resultado da busca para Cliente 2:"); console.table(cliente2);
+            console.log("Resultado da busca por título:"); console.table(pesquisarTitulo);
+            console.log("Resultado da busca por gênero: não encontrado");
+            
+        }else if (pesquisarTitulo == 0 && pesquisarGenero != 0){
 
+            console.log("Resultado da busca por título: não encontrado");
+            console.log("Resultado da busca por gênero:"); console.table(pesquisarGenero);
 
-// Cliente 3:
-const cliente3 = data.filter(({titulo, genero}) => [genero].flat().includes(buscaCliente3) || titulo === buscaCliente3) ; 
-console.log("Resultado da busca para Cliente 3:"); console.table(cliente3);
+        }else if(pesquisarTitulo != 0 && pesquisarGenero!= 0){
 
+            console.log("Resultado da busca por título:"); console.table(pesquisarTitulo);
+            console.log("Resultado da busca por gênero:"); console.table(pesquisarGenero);
 
-// Cliente 4:
-const cliente4 = data.filter(({titulo, genero}) => [genero].flat().includes(buscaCliente4) || titulo === buscaCliente4) ; 
-console.log("Resultado da busca para Cliente 4:"); console.table(cliente4);
+        }else{
 
+            console.log("Não foi possível encontrar resultados com o dado pesquisado.")
+        };
+        
+    } else if(typeof(pesquisa) != "string"){
+        console.log("Pesquisa inválida! Digite um dado válido.");
+    }
+}
 
-// Cliente 5:
-const cliente5 = data.filter(({titulo, genero}) => [genero].flat().includes(buscaCliente5) || titulo === buscaCliente5) ; 
-console.log("Resultado da busca para Cliente 5:"); console.table(cliente5);
+procurarFilmes("susp")
+
