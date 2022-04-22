@@ -114,6 +114,11 @@ let clientes = [
          //  FIM GERADOR DE DATA E HORA # 
 }
 
-fazerCompras(clienteLilit)
-fazerCompras(clienteFran)
-fazerCompras(clienteFelipe)
+function chamarClientes (){
+    clientes.forEach(cliente => {
+        fazerCompras(cliente)
+    });
+}
+
+
+chamarClientes()
